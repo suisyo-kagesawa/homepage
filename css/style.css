@@ -104,6 +104,38 @@ img {
     }
 }
 
+/* ========================================
+   作成中メッセージ
+======================================== */
+
+.coming-soon {
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 100px 20px;
+
+    text-align: center;
+}
+
+
+.coming-soon h2 {
+    margin: 0 0 20px;
+
+    color: #00a867;
+
+    font-size: 2rem;
+}
+
+
+.coming-soon p {
+    margin: 0;
+
+    color: #555555;
+
+    font-size: 1.1rem;
+}
 
 /* ========================================
    メインナビゲーション
@@ -255,21 +287,6 @@ img {
     border-radius: 10px;
 
     font-size: large;
-}
-
-
-/* ========================================
-   Xタイムライン
-======================================== */
-
-.box_twitter {
-    width: 35%;
-
-    padding: 0.5em 1em;
-
-    margin: 0.5em 2.5%;
-
-    float: right;
 }
 
 
@@ -479,4 +496,109 @@ footer {
 
         margin: 20px 0;
     }
+}
+
+/* ========================================
+   パンくずリスト
+======================================== */
+
+.breadcrumb {
+    width: 95%;
+
+    margin: 0 auto 20px;
+
+    font-size: 14px;
+
+    color: #555;
+}
+
+.breadcrumb a {
+    color: #00a867;
+
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    text-decoration: underline;
+}
+
+
+/* ========================================
+   写真ページ
+======================================== */
+
+.photo-page {
+    width: 100%;
+}
+
+.photo-page .box {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.photo-page .box:hover {
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.photo-page .box a {
+    color: #000000;
+
+    text-decoration: none;
+}
+
+.photo-page .box a h3 {
+    color: #00a867;
+
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.photo-page .box a:hover h3 {
+    text-decoration: underline;
+}
+
+.photo-page .box p {
+    line-height: 1.8;
+}
+
+.article-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-wrapper table {
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+    padding: 0.4rem;
+    text-align: center;
+}
+
+.article-navigation {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 2em 2.5%;
+font-size: large;
+}
+
+.article-navigation a {
+color: #000;
+text-decoration: none;
+}
+
+.article-navigation a:hover {
+text-decoration: underline;
 }

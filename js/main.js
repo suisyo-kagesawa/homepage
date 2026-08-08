@@ -8,7 +8,13 @@ const pages = {
     hobby: "pages/hobby.html",
     "kss-cup": "pages/kss-cup.html",
     links: "pages/links.html",
-    contact: "pages/contact.html"
+    contact: "pages/contact.html",
+
+    survga: "pages/hobby/survga.html",
+    photo: "pages/hobby/photo.html",
+    photo_0: "pages/hobby/photo/photo_0.html",
+    photo_1: "pages/hobby/photo/photo_1.html",
+    photo_2: "pages/hobby/photo/photo_2.html",
 };
 
 const content = document.getElementById("content");
@@ -133,31 +139,6 @@ function initializePage(pageName) {
         }
     }
 
-
-    // ------------------------------------
-    // X(Twitter)タイムライン
-    // ------------------------------------
-    if (pageName === "home") {
-
-        if (typeof twttr !== "undefined") {
-
-            twttr.widgets.load(
-                document.getElementById("content")
-            );
-
-        } else {
-
-            const script =
-                document.createElement("script");
-
-            script.src =
-                "https://platform.x.com/widgets.js";
-
-            script.async = true;
-
-            document.body.appendChild(script);
-        }
-    }
 }
 
 
