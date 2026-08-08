@@ -50,7 +50,7 @@ img {
     height: 250px;
 
     background:
-        url("https://static.tumblr.com/uasn2c2/ovarmmszy/background.jpg")
+        url("../images/background.jpg")
         center / cover;
 
     overflow: hidden;
