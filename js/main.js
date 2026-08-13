@@ -10,11 +10,11 @@ const pages = {
     links: "pages/links.html",
     contact: "pages/contact.html",
 
-    survga: "pages/hobby/survga.html",
+    survga: "pages/hobby/survival_game.html",
     photo: "pages/hobby/photo.html",
-    photo_0: "pages/hobby/photo/photo_0.html",
-    photo_1: "pages/hobby/photo/photo_1.html",
-    photo_2: "pages/hobby/photo/photo_2.html",
+    photo_equipment: "pages/hobby/photo/photo_equipment.html",
+    photo_exposure: "pages/hobby/photo/photo_exposure.html",
+    photo_framing: "pages/hobby/photo/photo_framing.html",
 };
 
 const content = document.getElementById("content");
