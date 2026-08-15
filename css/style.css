@@ -93,13 +93,6 @@ img {
     text-align: center;
 }
 
-@media screen and (max-width: 700px) {
-    .cover {
-        height: 15vh;
-        min-height: 80px;
-    }
-}
-
 /* ========================================
    作成中メッセージ
 ======================================== */
@@ -436,10 +429,16 @@ footer {
    スマートフォン
 ======================================== */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 700px),
+       screen and (orientation: landscape) and (max-height: 500px) {
 
     .site-header {
         position: static;
+    }
+    
+    .cover {
+        height: 15vh;
+        min-height: 80px;
     }
 
     .head_tabs {
