@@ -47,7 +47,7 @@ img {
 
 .cover {
     position: relative;
-    height: 250px;
+    height: min(250px, 25vh);;
 
     background:
         url("../images/background.jpg")
@@ -93,14 +93,10 @@ img {
     text-align: center;
 }
 
-@media screen and (max-width: 480px) {
-
+@media screen and (max-width: 700px) {
     .cover {
-        height: 200px;
-    }
-
-    .cover h1 {
-        font-size: 4rem;
+        height: 15vh;
+        min-height: 80px;
     }
 }
 
@@ -417,23 +413,6 @@ img {
     background: #ffffff;
 
     color: #00a867;
-}
-
-
-/* ========================================
-   フッター
-======================================== */
-
-footer {
-    padding: 30px;
-
-    margin-top: 50px;
-
-    background: #333333;
-
-    color: #ffffff;
-
-    text-align: center;
 }
 
 
