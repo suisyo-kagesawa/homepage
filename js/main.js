@@ -9,6 +9,7 @@ const pages = {
     "kss-cup": "pages/kss-cup.html",
     links: "pages/links.html",
     contact: "pages/contact.html",
+    "site_map": "pages/site_map.html",
 
     "survival_game": "pages/hobby/survival_game.html",
     "survival_game_rule": "pages/hobby/survival_game/survival_game_rule.html",
