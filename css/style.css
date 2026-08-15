@@ -116,7 +116,7 @@ img {
 
     font-size: 2rem;
 }
-
+eq
 
 .coming-soon p {
     margin: 0;
@@ -141,7 +141,8 @@ img {
     box-shadow:
         0 2px 5px rgba(0, 0, 0, 0.15);
 
-    position: relative;
+    position: sticky;
+    top: min(250px, 25vh);
 
     z-index: 999;
 }
@@ -435,7 +436,7 @@ footer {
     .site-header {
         position: static;
     }
-    
+
     .cover {
         height: 15vh;
         min-height: 80px;
