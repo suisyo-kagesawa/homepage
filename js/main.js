@@ -21,7 +21,7 @@ const pages = {
 };
 
 const pageTitles = {
-    home: "影沢家 | VTuber影沢翠松の公式HP",
+    home: "影沢家 | アサシン系VTuber影沢翠松の公式HP",
     profile: "プロフィール | 影沢家",
     hobby: "趣味部屋 | 影沢家",
     "kss-cup": "KSSカップ | 影沢家",
@@ -36,7 +36,7 @@ const pageTitles = {
     "photo_equipment": "カメラ関連機材 | 影沢家",
     "photo_exposure": "露出三要素 | 影沢家",
     "photo_framing": "写真の構図 | 影沢家",
-+};
+};
 
 const content = document.getElementById("content");
 
