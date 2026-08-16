@@ -20,6 +20,24 @@ const pages = {
     "photo_framing": "pages/hobby/photo/photo_framing.html",
 };
 
+const pageTitles = {
+    home: "影沢家 | VTuber影沢翠松の公式HP",
+    profile: "プロフィール | 影沢家",
+    hobby: "趣味部屋 | 影沢家",
+    "kss-cup": "KSSカップ | 影沢家",
+    links: "リンク集 | 影沢家",
+    contact: "お問い合わせ | 影沢家",
+    "site_map": "サイトマップ | 影沢家",
+
+    "survival_game": "サバゲー | 趣味部屋 | 影沢家",
+    "survival_game_rule": "サバゲーのルール | 影沢家",
+    "survival_game_cost": "サバゲーの費用 | 影沢家",
+    photo: "写真 | 趣味部屋 | 影沢家",
+    "photo_equipment": "カメラ関連機材 | 影沢家",
+    "photo_exposure": "露出三要素 | 影沢家",
+    "photo_framing": "写真の構図 | 影沢家",
++};
+
 const content = document.getElementById("content");
 
 
@@ -33,6 +51,10 @@ async function loadPage(pageName) {
         pageName = "home";
     }
 
+    // ページタイトルを変更
+    document.title =
+       pageTitles[pageName] || "影沢家 | 影沢翠松VTuber";
+    
     try {
 
         const response = await fetch(pages[pageName]);
