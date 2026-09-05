@@ -14,6 +14,7 @@ const pages = {
     "survival_game": "pages/hobby/survival_game.html",
     "survival_game_rule": "pages/hobby/survival_game/survival_game_rule.html",
     "survival_game_cost": "pages/hobby/survival_game/survival_game_cost.html",
+    "survival_game_field": "pages/hobby/survival_game/survival_game_field.html",
     photo: "pages/hobby/photo.html",
     "photo_equipment": "pages/hobby/photo/photo_equipment.html",
     "photo_exposure": "pages/hobby/photo/photo_exposure.html",
