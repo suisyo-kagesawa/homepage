@@ -39,6 +39,10 @@ img {
    ヘッダー
 ======================================== */
 
+#header {
+    display: contents;
+}
+
 .site-header {
     position: sticky;
     top: 0;
