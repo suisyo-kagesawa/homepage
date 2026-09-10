@@ -26,9 +26,16 @@ const pageUrls = {
     links: "pages/links.html",
 
     contact: "pages/contact.html",
-    site_map: "pages/site_map.html"
+    site_map: "pages/site_map.html",
+
+    photo: "pages/hobby/photo.html",
+    "survival-game": "pages/hobby/survival_game.html"
 };
 
+const navigationParents = {
+    photo: "hobby",
+    "survival-game": "hobby"
+};
 
 // ----------------------------------------
 // 共通HTMLを読み込む
@@ -125,13 +132,16 @@ function updateNavigation() {
     const currentPage =
         getCurrentPage();
 
+    const activePage =
+        navigationParents[currentPage] || currentPage;
+
     document
         .querySelectorAll(".head_tab_item")
         .forEach(item => {
 
             item.classList.toggle(
                 "active",
-                item.dataset.page === currentPage
+                item.dataset.page === activePage
             );
 
         });
