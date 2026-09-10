@@ -129,11 +129,17 @@ function getCurrentPage() {
 
 function updateNavigation() {
 
-    const currentPage =
+    const currentUrl =
+        new URL(window.location.href);
+
+    let activePage =
         getCurrentPage();
 
-    const activePage =
-        navigationParents[currentPage] || currentPage;
+    if (
+        currentUrl.pathname.includes("/pages/hobby/")
+    ) {
+        activePage = "hobby";
+    }
 
     document
         .querySelectorAll(".head_tab_item")
