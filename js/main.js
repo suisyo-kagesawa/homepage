@@ -157,7 +157,53 @@ document.addEventListener(
         );
 
         setupCommonLinks();
+        setupProfileTabs();
         updateNavigation();
 
     }
 );
+
+// ----------------------------------------
+// プロフィールタブ
+// ----------------------------------------
+
+function setupProfileTabs() {
+
+    const tabs =
+        document.querySelectorAll(".profile-tab");
+
+    const panels =
+        document.querySelectorAll(".profile-panel");
+
+    if (!tabs.length || !panels.length) {
+        return;
+    }
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            const targetId =
+                tab.dataset.target;
+
+            // タブのactive状態を切り替え
+            tabs.forEach(item => {
+                item.classList.toggle(
+                    "active",
+                    item === tab
+                );
+            });
+
+            // プロフィール表示を切り替え
+            panels.forEach(panel => {
+                panel.classList.toggle(
+                    "active",
+                    panel.id === targetId
+                );
+            });
+
+        });
+
+    });
+
+}
