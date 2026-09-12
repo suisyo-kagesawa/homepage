@@ -575,18 +575,99 @@ footer a {
     text-decoration: none;
 }
 
-.photo-page .box a h3 {
+.photo-page .box a h2 {
     color: #00a867;
 
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
 
-.photo-page .box a:hover h3 {
+.photo-page .box a:hover h2 {
     text-decoration: underline;
 }
 
 .photo-page .box p {
+    line-height: 1.8;
+}
+
+.article-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 1rem auto;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-wrapper table {
+    min-width: 700px;
+    border-collapse: collapse;
+}
+
+.table-wrapper th,
+.table-wrapper td {
+    padding: 0.4rem;
+    text-align: center;
+}
+
+.article-navigation {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 2em 2.5%;
+font-size: large;
+}
+
+.article-navigation a {
+color: #000;
+text-decoration: none;
+}
+
+.article-navigation a:hover {
+text-decoration: underline;
+}
+
+
+/* ========================================
+   サバゲーページ
+======================================== */
+
+.survival_game {
+    width: 100%;
+}
+
+.survival_game .box {
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.survival_game .box:hover {
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.survival_game .box a {
+    color: #000000;
+
+    text-decoration: none;
+}
+
+.survival_game .box a h2 {
+    color: #00a867;
+
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.survival_game .box a:hover h2 {
+    text-decoration: underline;
+}
+
+.survival_game .box p {
     line-height: 1.8;
 }
 
