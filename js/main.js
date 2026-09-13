@@ -1,200 +1,225 @@
 // ========================================
-// 影沢家 Webサイト ページ切り替え
+// 影沢家 Webサイト 共通処理
 // ========================================
 
-const pages = {
-    home: "pages/home.html",
+
+// ----------------------------------------
+// サイトのルートを取得
+// ----------------------------------------
+
+const scriptUrl = new URL(document.currentScript.src);
+
+// js/main.js の1つ上がサイトルート
+const SITE_ROOT = new URL("../", scriptUrl);
+
+
+// ----------------------------------------
+// ページURL
+// ----------------------------------------
+
+const pageUrls = {
+    home: "index.html",
+
     profile: "pages/profile.html",
     hobby: "pages/hobby.html",
     "kss-cup": "pages/kss-cup.html",
     links: "pages/links.html",
+
     contact: "pages/contact.html",
-    "site_map": "pages/site_map.html",
+    site_map: "pages/site_map.html",
 
-    "survival_game": "pages/hobby/survival_game.html",
-    "survival_game_rule": "pages/hobby/survival_game/survival_game_rule.html",
-    "survival_game_cost": "pages/hobby/survival_game/survival_game_cost.html",
-    "survival_game_field": "pages/hobby/survival_game/survival_game_field.html",
     photo: "pages/hobby/photo.html",
-    "photo_equipment": "pages/hobby/photo/photo_equipment.html",
-    "photo_exposure": "pages/hobby/photo/photo_exposure.html",
-    "photo_framing": "pages/hobby/photo/photo_framing.html",
+    "survival-game": "pages/hobby/survival_game.html"
 };
 
-const pageTitles = {
-    home: "影沢家 | アサシン系VTuber影沢翠松の公式HP",
-    profile: "プロフィール | 影沢家",
-    hobby: "趣味部屋 | 影沢家",
-    "kss-cup": "KSSカップ | 影沢家",
-    links: "リンク集 | 影沢家",
-    contact: "お問い合わせ | 影沢家",
-    "site_map": "サイトマップ | 影沢家",
-
-    "survival_game": "サバゲー | 趣味部屋 | 影沢家",
-    "survival_game_rule": "サバゲーのルール | 影沢家",
-    "survival_game_cost": "サバゲーの費用 | 影沢家",
-    photo: "写真 | 趣味部屋 | 影沢家",
-    "photo_equipment": "カメラ関連機材 | 影沢家",
-    "photo_exposure": "露出三要素 | 影沢家",
-    "photo_framing": "写真の構図 | 影沢家",
+const navigationParents = {
+    photo: "hobby",
+    "survival-game": "hobby"
 };
 
-const content = document.getElementById("content");
-
-
 // ----------------------------------------
-// ページを読み込む
+// 共通HTMLを読み込む
 // ----------------------------------------
-async function loadPage(pageName) {
 
-    // 存在しないページの場合はホームへ
-    if (!pages[pageName]) {
-        pageName = "home";
+async function loadComponent(elementId, file) {
+
+    const element =
+        document.getElementById(elementId);
+
+    if (!element) {
+        return;
     }
 
-    // ページタイトルを変更
-    document.title =
-       pageTitles[pageName] || "影沢家 | 影沢翠松VTuber";
-    
     try {
 
-        const response = await fetch(pages[pageName]);
+        const response =
+            await fetch(
+                new URL(file, SITE_ROOT)
+            );
 
         if (!response.ok) {
-            throw new Error("ページの読み込みに失敗しました");
+            throw new Error(
+                `${file} の読み込みに失敗しました`
+            );
         }
 
-        const html = await response.text();
-
-        content.innerHTML = html;
-
-        // 現在のメニューをハイライト
-        updateNavigation(pageName);
-
-        // ページ内のJavaScript処理
-        initializePage(pageName);
-
-        // ページ先頭へ
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        element.innerHTML =
+            await response.text();
 
     } catch (error) {
 
         console.error(error);
 
-        content.innerHTML = `
-            <div class="box">
-                <h2>ページを読み込めませんでした</h2>
-                <p>
-                    ページの読み込み中にエラーが発生しました。
-                </p>
-            </div>
-        `;
     }
 }
 
 
 // ----------------------------------------
-// ナビゲーションの現在位置を変更
+// 共通リンクのURLを設定
 // ----------------------------------------
-function updateNavigation(pageName) {
 
-    const navigationItems =
-        document.querySelectorAll(".head_tab_item");
+function setupCommonLinks() {
 
-    navigationItems.forEach(item => {
+    document
+        .querySelectorAll("[data-page]")
+        .forEach(link => {
 
-        const target =
-            item.getAttribute("href").replace("#", "");
+            const pageName =
+                link.dataset.page;
 
-        item.classList.toggle(
-            "active",
-            target === pageName
-        );
-    });
+            if (!pageUrls[pageName]) {
+                return;
+            }
+
+            link.href =
+                new URL(
+                    pageUrls[pageName],
+                    SITE_ROOT
+                ).href;
+        });
 }
 
 
 // ----------------------------------------
-// ページごとの初期化
+// 現在のページを判定
 // ----------------------------------------
-function initializePage(pageName) {
 
-    // ------------------------------------
-    // プロフィール
-    // ------------------------------------
-    if (pageName === "profile") {
+function getCurrentPage() {
 
-        const profileTabs =
-            document.querySelectorAll(".profile-tab");
+    const currentUrl =
+        new URL(window.location.href);
 
-        const profilePanels =
-            document.querySelectorAll(".profile-panel");
+    for (const [name, path] of Object.entries(pageUrls)) {
 
-        profileTabs.forEach(tab => {
+        const pageUrl =
+            new URL(path, SITE_ROOT);
 
-            tab.addEventListener("click", () => {
-
-                const target =
-                    tab.dataset.target;
-
-                profileTabs.forEach(item => {
-                    item.classList.remove("active");
-                });
-
-                profilePanels.forEach(panel => {
-                    panel.classList.remove("active");
-                });
-
-                tab.classList.add("active");
-
-                const targetPanel =
-                    document.getElementById(target);
-
-                if (targetPanel) {
-                    targetPanel.classList.add("active");
-                }
-            });
-        });
-
-        // 最初のプロフィールを表示
-        if (profileTabs.length > 0) {
-            profileTabs[0].click();
+        if (currentUrl.pathname === pageUrl.pathname) {
+            return name;
         }
     }
 
+    return "home";
 }
 
 
 // ----------------------------------------
-// URLのハッシュからページを決定
+// ナビゲーションの現在位置
 // ----------------------------------------
-function getPageFromHash() {
 
-    const hash =
-        window.location.hash.substring(1);
+function updateNavigation() {
 
-    return hash || "home";
+    const currentUrl =
+        new URL(window.location.href);
+
+    let activePage =
+        getCurrentPage();
+
+    if (
+        currentUrl.pathname.includes("/pages/hobby/")
+    ) {
+        activePage = "hobby";
+    }
+
+    document
+        .querySelectorAll(".head_tab_item")
+        .forEach(item => {
+
+            item.classList.toggle(
+                "active",
+                item.dataset.page === activePage
+            );
+
+        });
 }
 
 
 // ----------------------------------------
-// ハッシュ変更時
+// 初期化
 // ----------------------------------------
-window.addEventListener("hashchange", () => {
 
-    loadPage(getPageFromHash());
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-});
+        await loadComponent(
+            "header",
+            "components/header.html"
+        );
 
+        await loadComponent(
+            "footer",
+            "components/footer.html"
+        );
+
+        setupCommonLinks();
+        setupProfileTabs();
+        updateNavigation();
+
+    }
+);
 
 // ----------------------------------------
-// 初回読み込み
+// プロフィールタブ
 // ----------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
 
-    loadPage(getPageFromHash());
+function setupProfileTabs() {
 
-});
+    const tabs =
+        document.querySelectorAll(".profile-tab");
+
+    const panels =
+        document.querySelectorAll(".profile-panel");
+
+    if (!tabs.length || !panels.length) {
+        return;
+    }
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            const targetId =
+                tab.dataset.target;
+
+            // タブのactive状態を切り替え
+            tabs.forEach(item => {
+                item.classList.toggle(
+                    "active",
+                    item === tab
+                );
+            });
+
+            // プロフィール表示を切り替え
+            panels.forEach(panel => {
+                panel.classList.toggle(
+                    "active",
+                    panel.id === targetId
+                );
+            });
+
+        });
+
+    });
+
+}
