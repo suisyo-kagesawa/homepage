@@ -27,14 +27,6 @@ const pageUrls = {
 
     contact: "pages/contact.html",
     site_map: "pages/site_map.html",
-
-    photo: "pages/hobby/photo.html",
-    "survival-game": "pages/hobby/survival_game.html"
-};
-
-const navigationParents = {
-    photo: "hobby",
-    "survival-game": "hobby"
 };
 
 // ----------------------------------------
